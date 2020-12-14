@@ -80,6 +80,7 @@ pytest==5.4.1
 python-dateutil==2.8.1
 python-louvain==0.13
 pytz==2020.1
+pywin32==228
 pywin32-ctypes==0.2.0
 pywinpty==0.5.7
 PyYAML==5.3.1
@@ -92,6 +93,7 @@ scikit-learn==0.23.1
 scipy==1.5.0
 seaborn==0.11.0
 Send2Trash==1.5.0
+setuptools
 six==1.15.0
 snowballstemmer==2.0.0
 sortedcontainers==2.3.0
@@ -112,6 +114,7 @@ tensorboard-plugin-wit==1.7.0
 tensorflow==2.3.1
 tensorflow-estimator==2.3.0
 termcolor==1.1.0
+terminado==0.9.1
 testpath==0.4.4
 threadpoolctl==2.1.0
 toml==0.10.1
