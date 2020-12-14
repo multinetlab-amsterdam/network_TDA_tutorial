@@ -1,7 +1,15 @@
 # Notebook for Network Analysis in Neuroscience
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![GLP-3.0 License](https://img.shields.io/github/license/multinetlab-amsterdam/network_TDA_tutorial)](https://img.shields.io/github/license/multinetlab-amsterdam/network_TDA_tutorial)
 [![Python 3.7.8](https://img.shields.io/badge/python-3.7.8-blue.svg)](https://www.python.org/downloads/release/python-378/)
+
+
+[![Stars](https://img.shields.io/github/stars/multinetlab-amsterdam/network_TDA_tutorial?style=social)](https://img.shields.io/github/stars/multinetlab-amsterdam/network_TDA_tutorial?style=social)
+[![Watchers](https://img.shields.io/github/watchers/multinetlab-amsterdam/network_TDA_tutorial?style=social)](https://img.shields.io/github/watchers/multinetlab-amsterdam/network_TDA_tutorial?style=social)
+
 [![DOI](https://zenodo.org/badge/321418758.svg)](https://zenodo.org/badge/latestdoi/321418758)
+
+
 
 Authors: Eduarda Centeno  & Fernando Santos 
 
@@ -21,7 +29,8 @@ Contact information: <e.centeno@amsterdamumc.nl> or <f.nobregasantos@amsterdamum
 <br>
 
 > This repository is a supplement to  ["paper title"](https://doi...)
-
+>
+> and its preprint ["title"](https://doi...)
 
 <br>
 
@@ -34,8 +43,8 @@ Contact information: <e.centeno@amsterdamumc.nl> or <f.nobregasantos@amsterdamum
 
 | Nbviewer | Jupyter Notebook | Jupyter Lab | HTML |
 | ---      | --               | ---         | ---  |
-| [1-network_analysis.ipynb](./1-network_analysis.ipynb) | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/...) | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/.../master?urlpath=lab/..) | [HTML](./html/1-network_analysis.html) |
-| [2-visualization_3d.ipynb](./2-visualization_3d.ipynb) | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/...) | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/.../master?urlpath=lab/..) | [HTML](./html/2-visualization_3d.html) |
+| [1-network_analysis.ipynb](https://nbviewer.jupyter.org/github/multinetlab-amsterdam/network_TDA_tutorial/blob/main/1-network_analysis.ipynb) | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/...) | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/.../master?urlpath=lab/..) | [HTML](https://ghcdn.rawgit.org/multinetlab-amsterdam/network_TDA_tutorial/main/html/1-network_analysis.html) |
+| [2-visualization_3d.ipynb](https://nbviewer.jupyter.org/github/multinetlab-amsterdam/network_TDA_tutorial/blob/main/2-visualization_3d.ipynb) | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/...) | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/.../master?urlpath=lab/..) | [HTML](https://ghcdn.rawgit.org/multinetlab-amsterdam/network_TDA_tutorial/main/html/2-visualization_3d.html) |
 
 -------------------------------------------------------------------------
 
