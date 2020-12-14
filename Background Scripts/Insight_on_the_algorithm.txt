@@ -1,0 +1,65 @@
+In this document we provide detailed explenation on how the algorithms of the file "TDA_Compute_BettiK_Euler" are constructed. 
+Read if you want to have insight on the way the algorithm was built.
+
+
+########################################################
+
+1)EXPLENATION of the algorithm of the function "from_cx_to_dx" in the file "TDA_Compute_BettiK_Euler":
+
+In order to count the number of connected components with the increment of thefiltration value, we have built a Python algorithm.
+We will give here a general explanation on how this algorithm is constructed, and in the file "TDA_Compute_BettiK_Euler" the code with detailed comments is given.
+
+We start from the Cx matrix where the values of strength of connections between nodes are stored, and we move step by step toward the construction of the single linkage matrix Dx. We are giving a new definition of distance, and for each filtration value, we look at how the connections have shaped the network and how many clusters we have. At each step of the algorithm, when we look for the next filtration value (which is a value in the matrix Cx), new nodes are added to the existing clusters, and two or more clusters can merge together.
+Starting from the Cx matrix, at the end of our process, we will end with the Dx matrix. Changes are done step by step by the algorithm: the nodes are added tothe clusters one at a time.
+At first, we initialize three different lists that at the end will contain:
+
+1. the filtration values at which a change in the network occurs (list "a_values" in the code)
+2. the number of connected components at each step: from 100 different components to 1 giant component* ("connected_comp").
+3. the different clusters, called connected components ("list_clusters"). Each cluster is a list containing the nodes which are part of that particular cluster.
+
+
+In the beginning, we have N different clusters (in our case N=100) composed eachby one node, and at the end of the process, we will have just one big list containingall the nodes. To do so, we start a loop, and we continue the processuntil all the values in the Cx matrix are substituted with the values correspondingto the orders of the different clusters (the new definition of distance between nodes).
+
+In the loop, we start from the smallest value (order) "a" in the matrix, we look for the nodes in the matrix which have a connection of value "a", and we save each couple in an array (array_positions). Then for each couple, we look in which cluster the two nodes node1 and node2 are contained. If the two nodes belong to two different clusters, we can connect the two clusters. We can, therefore, connect all the points in the two clusters with the same orderof connection "a" because they now belong to the same cluster (definition of Dx). 
+Practically, what we do is to replace with "a", in the matrix, the values regarding the connections between all those nodes. We have therefore merged the two clusters and modified the list_clusters, which contains all the different clusters. We do this procedure for all the couples of nodes connected with "a" (all the couples inarray_positions). The number of connected components for this analyzed "a" is then the length of the modified list list_clusters. We now append to the filtration value list the filtration value "a" we were using (a_values). We repeat the same procedure for the next filtration value we have in the matrix (which is the minimum value greater than "a").
+
+At the end of the process, all the values in the matrix will be substituted (the nodes in the same cluster will have the same value of connection) and we obtain our Dx matrix. With the last filtration value of the process, all the clusters will merge together, forming one big connected component. Now in the two lists "a_values" and "connected_comp" we have all the information to plot the topological changes of the network with the increment of the filtration value. We can visualize these changesin the Betti-0 curve.
+
+*The giant component is a graph where all the nodes are part of the same connected component.
+
+###############################################################################
+
+2) BETTI NUMBERS (higher order) and EULER
+Here, we will explain how we implemented the algorithm to compute the Betti numbers and the Euler characteristic and illustrate the most critical steps. The algorithm reproduces the same steps of the theoretical explanation: it counts the number of k-simplex in the graph, defines the boundary matrices needed for the computation, and after the Gaussian reduction it counts the rank of the matrices in order to compute Betti numbers.
+Here we will explain the general working of the algorithm and, in the file "TDA_Compute_BettiK_Euler", in the function "Betti_k" the complete code with detailed comments is given. The algorithm is composed by 5 fases:
+
+1. Prepare maximal cliques
+2. Enumerate all simplices
+3. Construct the boundary operator
+4. Compute rank anddim(ker) of the boundary operators
+5. Compute the Betti number
+
+1. In the first step, we find all the maximal cliquein the graph, and we create a list containing the different maximal cliques sorted from the smallest to the largest. Let’s understand the concept of the maximal clique. A maximal clique is a clique that includes the largest possible number of vertices and can not be included in a greater clique. For example, if we have 4 nodes all connected (4-clique), also the different subsets of 3 nodes will be all connected (3-clique), but in the maximal clique list, we will consider only the 4-clique because it is the maximum number of connected nodes. If we take the example of Fig. 6.7 (thesis file)
+the list of maximal cliques of that complex is C: [(0,1,2,3),(0,4),(2,5),(4,5)].
+
+2. In the second step we do the following: for every element in C, we do all the possible combinations to find all the k-sub cliques of each maximal clique. We create different lists Sk where we store these sub cliques. Sk is the list containingthe cliques of dimension k. We want to enumerate all this k-simplex, so we create a dictionary where each key is an element (a clique) of Sk and the value is an index. We then put this dictionaryin an S list (list of dictionaries). The length of the dictionary depends on how many dimensions of k-simplex we have.The dictionary for our example is:
+S=[{(0) : 0,(1) : 1,(2) : 2,(3) : 3,(4) : 4,(5) : 5},
+{(0,1) : 0,(0,2) : 1,(0,3) : 2,(0,4) : 3,(1,2) : 4,(1,3) : 5,(2,3) : 6,(2,5) : 7,(4,5) : 8},
+{(0,1,2) : 0,(0,1,3) : 1,(0,2,3) : 2,(1,2,3) : 3}].
+
+3. In the third step, since we want to build the boundary matrix, what we want is to find, for each k-simplex (label of the columns of the matrix) all the (k-1)-simplex contained in it. And then fill the column of the matrix with 1 or -1 (if contained) and 0 (otherwise). The (k-1)-simplex are the labels of the rows. The ∂ matrix has dimension Sk−1 x Sk. So we create a matrix D[k] =np.zeros(lenS[k−1],lenS[k]).To fill the matrix, we look at every element of the S[k] dictionary, and for each k-clique we do all the possible combinations to build the (k-1)-cliques. We then find in the dictionary S the indexes of these (k-1)-cliques, and we store them in a list. Then, in correspondence of these indexes in the column of the boundary matrix, we will fill with 1 or -1. After looking at every element of the dictionary and repeating this procedure, the boundary matrix will be entirely filled. We then do the same for S[k+1] so we have the matrix ∂k and ∂k+1.
+
+4. In the fourth step we do the Gaussian reduction and then count the rank of thetwo matrices. We compute dim(im∂k+1)and dim(ker∂k)and finally we can compute the Betti number as dim(ker∂k)−dim(im∂k+1).
+
+To compute the Euler characteristic, the first two steps of the algorithm are the same. Then, in the third step, we simply count the number of k-simplex in each Sk list which corresponds to compute len(Sk). Finally we compute the Euler characteristic by applying its formula.
+
+###########################################################################
+
+CHANGING THE DENSITY IN A NETWORK.
+-choosing the desired density of a given network, obtain a new network and compute the quantities (Betti-1, Betti_2...) on this obtained network .
+
+Explenation of the function "dens_thres"
+
+Now we will explain what we do for each chosen density; the Python code is in the function "dens_thresh" in the file "TDA_Compute_BettiK_Euler". For example, if we want a density of 10% (10% of the maximum number of connections N(N−1)/2) what we do is the following. 
+We start from the connectivity matrix Cx NxN containing the values of strength of connection for each pair of nodes. With the rescaling, we obtain a matrix where smaller values mean stronger connections. We create a list with all these values in increasing order, and then we take the first 10% of the list. (e.g. N=78)
+The 10% of(78×77)/2=3003 connections are 300 connections, so the new list contains 300 values. We save the last value of the shorted list (list of the 10% of strongest connections): this will be our threshold. We now create a network (represented by a new matrix 78x78) based on that threshold. When the value in the starting matrix is greater than that filtration value (meaning that it is not in the 10% of strongest connections), we put 0 (the two nodes are not connected) when the value is smaller, we put 1 (the two nodes are connected). So now we have obtained a network where we connected only the nodes that had a connection which was in the 10% of strongest connections. On the so obtained network we can compute the desired quantities (e.g. Betti-1). Then we choose a greater value of density, and we create a new network using the same procedure and compute Betti-1 again. We repeat the procedure for all the chosen values of density in the desired range. Of course, from a run time point of view when the value of density is greater, the number of connections is higher, so the computation is slower because the Boundary matrix can be huge.

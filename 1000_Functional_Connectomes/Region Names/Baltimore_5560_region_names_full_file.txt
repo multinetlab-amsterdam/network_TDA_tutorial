@@ -1,0 +1,177 @@
+Left Lateral Occipital Cortex inferior division
+Left Lateral Occipital Cortex superior division
+Right Precuneous Cortex
+Left Insular Cortex
+Left Paracingulate Gyrus
+Right Precuneous Cortex
+Right Angular Gyrus
+Left Postcentral Gyrus
+Left Middle Temporal Gyrus posterior division
+Right Frontal Pole
+Right Paracingulate Gyrus
+Right Angular Gyrus
+Right Putamen
+Left Lateral Occipital Cortex inferior division
+Right Precentral Gyrus
+Right Thalamus
+Left Precuneous Cortex
+Left Insular Cortex
+Left Postcentral Gyrus
+Right Cingulate Gyrus anterior division
+Left Frontal Pole
+Left Parietal Operculum Cortex
+Right Frontal Pole
+Right Lateral Occipital Cortex inferior division
+Left Parahippocampal Gyrus anterior division
+Right Postcentral Gyrus
+Right Cingulate Gyrus posterior division
+Right Superior Parietal Lobule
+Right Temporal Pole
+Left Supramarginal Gyrus posterior division
+Left Precentral Gyrus
+Right Central Opercular Cortex
+Left Thalamus
+Right Middle Frontal Gyrus
+Right Middle Temporal Gyrus temporooccipital part
+Right Cingulate Gyrus anterior division
+Left Frontal Pole
+Right Occipital Pole
+Left Thalamus
+Right Cingulate Gyrus posterior division
+Left Caudate
+Right Hippocampus
+Right Middle Temporal Gyrus posterior division
+Left Precentral Gyrus
+Right Frontal Orbital Cortex
+Left Cuneal Cortex
+Right Cingulate Gyrus anterior division
+Left Angular Gyrus
+Left Frontal Orbital Cortex
+Right Precuneous Cortex
+Right Insular Cortex
+Right Postcentral Gyrus
+Left Middle Frontal Gyrus
+Right Temporal Fusiform Cortex posterior division
+Left Temporal Occipital Fusiform Cortex
+Right Middle Frontal Gyrus
+Right Postcentral Gyrus
+Right Planum Temporale
+Left Putamen
+Right Middle Temporal Gyrus temporooccipital part
+Left Lingual Gyrus
+Right Frontal Orbital Cortex
+Left Middle Temporal Gyrus posterior division
+Left Precentral Gyrus
+Left Frontal Orbital Cortex
+Right Frontal Pole
+Left Cingulate Gyrus posterior division
+Left Temporal Pole
+Right Cingulate Gyrus anterior division
+Right Precuneous Cortex
+Left Lateral Occipital Cortex superior division
+Right Planum Polare
+Left Caudate
+Right Lateral Occipital Cortex inferior division
+Right Temporal Fusiform Cortex posterior division
+Left Postcentral Gyrus
+Right Intracalcarine Cortex
+Left Precentral Gyrus
+Right Superior Frontal Gyrus
+Left Amygdala
+Right Supramarginal Gyrus posterior division
+Right Caudate
+Left Middle Frontal Gyrus
+Left Postcentral Gyrus
+Left Lateral Occipital Cortex superior division
+Right Precentral Gyrus
+Left Middle Temporal Gyrus temporooccipital part
+Right Inferior Temporal Gyrus temporooccipital part
+Left Middle Temporal Gyrus anterior division
+Right Occipital Pole
+Left Frontal Pole
+Right Lingual Gyrus
+Right Middle Frontal Gyrus
+Right Superior Temporal Gyrus posterior division
+Left Occipital Pole
+Right Frontal Pole
+Right Temporal Pole
+Right Precentral Gyrus
+Left Frontal Orbital Cortex
+Right Frontal Pole
+Left Lateral Occipital Cortex superior division
+Right Precentral Gyrus
+Left Supramarginal Gyrus anterior division
+Left Middle Temporal Gyrus temporooccipital part
+Right Central Opercular Cortex
+Left Insular Cortex
+Left Parahippocampal Gyrus posterior division
+Right Precentral Gyrus
+Right Frontal Pole
+Left Middle Frontal Gyrus
+Right Middle Frontal Gyrus
+Right Parietal Operculum Cortex
+Left Planum Polare
+Left Occipital Pole
+Right Lateral Occipital Cortex superior division
+Left Superior Frontal Gyrus
+Right Precentral Gyrus
+Right Caudate
+Left Lateral Occipital Cortex superior division
+Right Planum Polare
+Right Occipital Fusiform Gyrus
+Right Frontal Pole
+Right Middle Temporal Gyrus anterior division
+Left Inferior Frontal Gyrus pars triangularis
+Right Occipital Pole
+Right Lateral Occipital Cortex inferior division
+Right Inferior Frontal Gyrus pars triangularis
+Left Hippocampus
+Left Heschl's Gyrus
+Left Precuneous Cortex
+Right Thalamus
+Left Paracingulate Gyrus
+Left Lateral Occipital Cortex inferior division
+Left Middle Frontal Gyrus
+Right Superior Temporal Gyrus posterior division
+Left Postcentral Gyrus
+Right Hippocampus
+Left Superior Parietal Lobule
+Right Postcentral Gyrus
+Left Occipital Pole
+Left Occipital Fusiform Gyrus
+Left Subcallosal Cortex
+Right Superior Frontal Gyrus
+Right Precuneous Cortex
+Right Inferior Frontal Gyrus pars opercularis
+Left Precentral Gyrus
+Right Lateral Occipital Cortex superior division
+Left Frontal Pole
+Right Frontal Pole
+Left Frontal Pole
+Right Lateral Occipital Cortex superior division
+Left Postcentral Gyrus
+Right Temporal Occipital Fusiform Cortex
+Left Superior Frontal Gyrus
+Left Precuneous Cortex
+Right Lateral Occipital Cortex inferior division
+Left Lingual Gyrus
+Right Putamen
+Left Lingual Gyrus
+Right Supramarginal Gyrus anterior division
+Right Temporal Pole
+Left Juxtapositional Lobule Cortex
+Left Frontal Pole
+Left Central Opercular Cortex
+Right Heschl's Gyrus
+Right Frontal Pole
+Right Superior Frontal Gyrus
+Left Superior Parietal Lobule
+Left Temporal Occipital Fusiform Cortex
+Left Superior Frontal Gyrus
+Right Frontal Pole
+Right Lingual Gyrus
+Left Temporal Pole
+Left Precuneous Cortex
+Right Temporal Fusiform Cortex anterior division
+Brain-Stem
+Left Planum Temporale
