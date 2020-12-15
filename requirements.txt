@@ -64,7 +64,7 @@ pandocfilters==1.4.2
 parso==0.7.1
 pickleshare==0.7.5
 Pillow==8.0.1
-pip==20.3.1
+pip
 plotly==4.6.0
 pluggy==0.13.1
 prometheus-client==0.8.0
