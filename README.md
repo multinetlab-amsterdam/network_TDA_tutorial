@@ -16,11 +16,13 @@ Authors: Eduarda Centeno  & Fernando Santos
 Contact information: <e.centeno@amsterdamumc.nl> or <f.nobregasantos@amsterdamumc.nl>
 
 -------------------------------------------------------------------------
+
 ## Table of contents
 1. [General information](#general_information)
 2. [Requirements](#requirements)
 3. [How to install](#how_to_install)
-4. [Acknowledgements](#acknowledgements)
+4. [Notes](#notes)
+5. [Acknowledgements](#acknowledgements)
 
 ### <a id='general_information'></a> General information:
 
@@ -39,14 +41,14 @@ Contact information: <e.centeno@amsterdamumc.nl> or <f.nobregasantos@amsterdamum
 1. The first part contains the standard computations of network and TDA metrics and visualizations. 
 2. The second part is dedicated to the 3D visualizations developed by our group.
 
-<br>
 
-| Nbviewer | Jupyter Notebook | Jupyter Lab | HTML |
-| ---      | --               | ---         | ---  |
-| [1-network_analysis.ipynb](https://nbviewer.jupyter.org/github/multinetlab-amsterdam/network_TDA_tutorial/blob/main/1-network_analysis.ipynb) | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/multinetlab-amsterdam/network_TDA_tutorial/HEAD?filepath=1-network_analysis.ipynb) | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/multinetlab-amsterdam/network_TDA_tutorial/HEAD?urlpath=lab/tree/1-network_analysis.ipynb) | [HTML](https://ghcdn.rawgit.org/multinetlab-amsterdam/network_TDA_tutorial/main/html/1-network_analysis.html?flush_cache=true) |
-| [2-visualization_3d.ipynb](https://nbviewer.jupyter.org/github/multinetlab-amsterdam/network_TDA_tutorial/blob/main/2-visualization_3d.ipynb) | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/multinetlab-amsterdam/network_TDA_tutorial/HEAD?filepath=2-visualization_3d.ipynb) | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/multinetlab-amsterdam/network_TDA_tutorial/HEAD?urlpath=lab/tree/2-visualization_3d.ipynb) | [HTML](https://ghcdn.rawgit.org/multinetlab-amsterdam/network_TDA_tutorial/main/html/2-visualization_3d.html?flush_cache=true) |
+```
+                                    A video created with our 3D brain plots!
+```
+![](./Figures/gif.gif)
 
--------------------------------------------------------------------------
+
+------------------------------------------------------------------------
 
 ### <a id='requirements'></a> Requirements:
 Here we will describe the core packages that will be necessary, but due to dependency compatibilities, we have provided a requirements.txt with all packages needed to be installed in a new Anaconda environment. 
@@ -68,17 +70,29 @@ Here we will describe the core packages that will be necessary, but due to depen
 -------------------------------------------------------------------------
 
 ### <a id='how_to_install'></a>How to install:
-We recommend creating a new environment in anaconda dedicated for the use of these notebooks.
+We recommend creating a new environment in Anaconda dedicated for the use of these notebooks.
 
-1. Create a new Anaconda environment
+1. Create a new Anaconda environment with the correct python version (in Anaconda prompt or navigator)
 
-2. Install packages using pip in Anaconda prompt with environment-specific python.exe
+2. Activate the new environment in the command line (Anaconda prompt)
 
 ```
-c:\users\username\anaconda3\envs\envname\python.exe -m pip install -r requirements.txt
+activate envname
 ```
 
-3. Add jupyter-plotly labextension (key for 3D visualization)
+3. Change to the notebook's directory
+
+```
+cd path\to\notebookfolder
+```
+
+4. Install packages using pip in Anaconda prompt with environment-specific python.exe
+
+```
+path\to\anaconda3\envs\envname\python.exe -m pip install -r requirements.txt
+```
+
+5. Add jupyter-plotly labextension (key for 3D visualization)
 
 ```
 jupyter labextension install jupyterlab-plotly 
@@ -96,8 +110,28 @@ __Troubleshooting__:
 2. Jupyter Lab is asking for Node.js 5+. 
 
     > Using *conda install nodejs* will potentially solve the issue.
+    
+<br>
+
+#### Web-based options:
+| Nbviewer | Jupyter Notebook | Jupyter Lab | HTML |
+| ---      | --               | ---         | ---  |
+| [1-network_analysis.ipynb](https://nbviewer.jupyter.org/github/multinetlab-amsterdam/network_TDA_tutorial/blob/main/1-network_analysis.ipynb) | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/multinetlab-amsterdam/network_TDA_tutorial/HEAD?filepath=1-network_analysis.ipynb) | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/multinetlab-amsterdam/network_TDA_tutorial/HEAD?urlpath=lab/tree/1-network_analysis.ipynb) | [HTML](https://ghcdn.rawgit.org/multinetlab-amsterdam/network_TDA_tutorial/main/html/1-network_analysis.html?flush_cache=true) |
+| [2-visualization_3d.ipynb](https://nbviewer.jupyter.org/github/multinetlab-amsterdam/network_TDA_tutorial/blob/main/2-visualization_3d.ipynb) | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/multinetlab-amsterdam/network_TDA_tutorial/HEAD?filepath=2-visualization_3d.ipynb) | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/multinetlab-amsterdam/network_TDA_tutorial/HEAD?urlpath=lab/tree/2-visualization_3d.ipynb) | [HTML](https://ghcdn.rawgit.org/multinetlab-amsterdam/network_TDA_tutorial/main/html/2-visualization_3d.html?flush_cache=true) |
+
+-------------------------------------------------------------------------
+
+### <a id='Notes'></a>Notes:
+
+The jupyter notebooks can throw some warnings due to package updates and resulting deprecations. It is possible to use the following code lines to ignore these warnings:
+
+```
+import warnings
+
+warnings.filterwarnings('ignore') 
+```
+
 -------------------------------------------------------------------------
 
 ### <a id='acknowledgements'></a>Acknowledgements:
-
 "Data were provided [in part] by the Human Connectome Project, MGH-USC Consortium (Principal Investigators: Bruce R. Rosen, Arthur W. Toga and Van Wedeen; U01MH093765) funded by the NIH Blueprint Initiative for Neuroscience Research grant; the National Institutes of Health grant P41EB015896; and the Instrumentation Grants S10RR023043, 1S10RR023401, 1S10RR019307."
