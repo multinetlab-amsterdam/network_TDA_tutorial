@@ -694,7 +694,7 @@ def tracenodek(Graph, k):
                              #colorscale='Viridis',
                              #line=dict(color='rgb(50,50,50)', width=0.5)
                              #),
-                           color=colorV, colorscale=jet, cauto=value, cmin=0, cmax=5), 
+                           color=colorV, colorscale=plasma, cauto=value, cmin=0, cmax=5), 
                            hoverinfo='skip', showlegend=False #name=[i for i in areas]
                            #colorbar = dict(title = 'Life<br>Expectancy'),),
                            #color=group,
@@ -790,6 +790,9 @@ def plotclique3dk(Graph, e, k, t, movie=False):
                                  
     tracel = go.Scatter3d(x=[0, 40, 60,-50], y=[50,-80, -70,20], z=[-40,-25,60,75],
                           mode='text', text=['front', 'right', 'back','left'],
+                          textfont=dict(family='calibri'),
+
+
                           textposition='bottom center', hoverinfo='skip',
                           showlegend=False)
     
@@ -819,12 +822,14 @@ def plotclique3dk(Graph, e, k, t, movie=False):
                                             zeroline=False, showbackground=False),
                                  zaxis=dict(ticklen=20, showticklabels=False, 
                                             zeroline=False, showbackground=False))) #,zaxis=dict(ticklen=20,showticklabels=False, zeroline=False))
-
+    fig.update_layout(
+    font_family="calibri",
+    )
     if movie==False:
         return iplot(fig)
     
     if movie==True:
-        return fig
+        return fig.write_image("temp.svg")
     
     
 
@@ -984,7 +989,7 @@ def plotcurv(Graph, e, movie=False):
                              marker=dict(sizemode='diameter', symbol='circle',
                                          showscale=True, 
                                          colorbar=dict(title='Node curvature', 
-                                                       thickness=30,x=0.95,
+                                                       thickness=30,x=0.1,#before was 0.95
                                                        len=0.8), 
                                          opacity=1, size=size, color=sig, 
                                          colorscale=plasma),
@@ -1014,6 +1019,7 @@ def plotcurv(Graph, e, movie=False):
     tracel = go.Scatter3d(x=[0, 40, 60,-50], y=[50,-80, -70,20], z=[-40,-25,60,75], 
                           mode='text', #name='Markers and Text',
                           text=['front', 'right', 'back','left'], 
+                          textfont=dict(family='calibri'),
                           textposition='bottom center', hoverinfo='skip', 
                           showlegend=False)
     
@@ -1021,11 +1027,14 @@ def plotcurv(Graph, e, movie=False):
     camera = dict(up=dict(x=0, y=0, z=1), center=dict(x=0, y=0, z=0),
                   eye=dict(x=1.9, y=0.8, z=0.225))
     
+    
+    
+    
     layout = go.Layout(autosize=True, # To export we need to make False and uncomment the details bellow
                        #width=780, #height=540, # This is to make an centered html file. To export as png, one needs to include this margin
                         #margin=go.Margin(l=5, r=5, b=5, t=0, pad=0),
                         title='Node Curvature - Threshold = ' + str('%.3f' % e),
-                        font=dict(size=18, color='black'), 
+                        #font=dict(size=18, color='black'), 
                         paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)',
                         #showline=False, #zaxis=dict(title='x Axis', 
                                                      #titlefont=dict(
@@ -1076,9 +1085,17 @@ def plotcurv(Graph, e, movie=False):
                         
     
     fig = go.Figure(data=data, layout=layout) #, layout=layout)
+    
     fig.update_layout(autosize=False, width=800, height=800, 
                       margin=dict(l=50, r=50, b=100, t=100, # pad=4
                                   ))
+    # need to fix the bar!!
+    fig.update_layout(autosize=False, width=1200*0.8, height=800*0.8, 
+                      margin=dict(l=50, r=50, b=100, t=100, pad=4))
+    
+    fig.update_layout(
+    font_family="calibri",
+    )
 
     fig.update_layout(scene=dict(xaxis=dict(ticklen=20, showticklabels=False, 
                                             zeroline=False, showbackground=False), 
@@ -1091,7 +1108,8 @@ def plotcurv(Graph, e, movie=False):
         return iplot(fig)
     
     if movie == True:
-        return fig
+        #return figif movie==True:
+        return fig.write_image("temp.svg")
     
     
 #######################
