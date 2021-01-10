@@ -279,22 +279,22 @@ def Plot_Brain_Mod(G, path_pos=path_pos, scale=1):
                         mode='markers',
                         marker=dict(sizemode='diameter', symbol='circle',
                                     showscale=True,
-                                    colorbar = dict(title='Values',
+                                    colorbar=dict(title='Values',
                                                     thickness=30, x=0.95, len=0.8,
                                                     tickmode='array',
-                                                    tick0=0, dtick=1, nticks=4),
+                                                    tickvals=colorV),
                                     opacity=0.85, size=10*sizec, color=colorV, 
-                                    colorscale=Spectral, cauto=True, 
+                                    colorscale=Spectral, cauto=False, 
                                     cmin=np.min(colorV), cmax=np.max(colorV)),
-                        showlegend=False, text=None, hoverinfo = None)
+                        showlegend=False, text=None, hoverinfo=None)
     
-    data = [brain_trace,trace1,trace2]
+    data = [brain_trace, trace1, trace2]
     fig = go.Figure(data=data)
     fig.update_layout(
         autosize=False,
-        width=800,
+        width=1200,
         height=800,
-        margin=dict(l=50, r=50, b=100, t=100, # pad=4
+        margin=dict(l=50, r=50, b=100, t=100, pad=4
                     )
         )
     
@@ -423,8 +423,8 @@ def Plot_Brain_Prop(node_prop, path_pos=path_pos, scale=1, node_colors=None):
                                       opacity=1, size=10*sizec, color=colorV, 
                                       colorscale=plasma, cauto=True, 
                                       cmin=np.min(colorV), cmax=np.max(colorV)),
-                          showlegend=False, text=areas, hoverinfo=None)#Was none before
-    data=[brain_trace,trace1,trace2]
+                          showlegend=False, text=areas, hoverinfo=None)
+    data=[brain_trace, trace1, trace2]
     fig = go.Figure(data=data)
     fig.update_layout(
         autosize=False,
@@ -502,9 +502,9 @@ def degree_3D(Graph, scale=1, node_colors=None, color_prop_name=None, weight=Fal
         
     trace2 = go.Scatter3d(x=x, y=y, z=z, text=areas, mode='markers', #name='areas',
                marker=dict(sizemode='diameter', symbol='circle', showscale=True, 
-                           colorbar=dict(title = name, thickness=30,x=0.95,
-                                         len=0.8, tickmode = 'linear', 
-                                         tick0=0,dtick=1), opacity=0.85, 
+                           colorbar=dict(title=name, thickness=30, x=0.95,
+                                         len=0.8, tickmode='linear', 
+                                         tick0=0, dtick=1), opacity=0.85, 
                            size=10*sizec, color=colorV, colorscale=plasma,
                            cauto=value, cmin=0, cmax=5), hoverinfo='skip', 
                showlegend=False)  
@@ -531,7 +531,7 @@ def degree_3D(Graph, scale=1, node_colors=None, color_prop_name=None, weight=Fal
                                             zeroline=False, showbackground=False)))#,zaxis=dict(ticklen=20,showticklabels=False, zeroline=False))
 
                
-    return iplot(fig,image_width=4340*1.1, image_height=2620*1.1) 
+    return iplot(fig, image_width=4340*1.1, image_height=2620*1.1) 
     #return iplot(data)
 
 
@@ -790,11 +790,8 @@ def plotclique3dk(Graph, e, k, t, movie=False):
                                  
     tracel = go.Scatter3d(x=[0, 40, 60,-50], y=[50,-80, -70,20], z=[-40,-25,60,75],
                           mode='text', text=['front', 'right', 'back','left'],
-                          textfont=dict(family='calibri'),
-
-
-                          textposition='bottom center', hoverinfo='skip',
-                          showlegend=False)
+                          textfont=dict(family='calibri'), textposition='bottom center', 
+                          hoverinfo='skip', showlegend=False)
     
     # IF YOU WANNA INCLUDE THE LINK  TOGETHER WITH THE SIMPLEXES - JUST INCLUDE THIS
     # trace3=go.Scatter3d(x=Xed,
@@ -1023,7 +1020,7 @@ def plotcurv(Graph, e, movie=False):
                           textposition='bottom center', hoverinfo='skip', 
                           showlegend=False)
     
-    data = [brain_trace,trace1,tracecurv,tracep,tracen,tracel]
+    data = [brain_trace, trace1, tracecurv, tracep, tracen, tracel]
     camera = dict(up=dict(x=0, y=0, z=1), center=dict(x=0, y=0, z=0),
                   eye=dict(x=1.9, y=0.8, z=0.225))
     
@@ -1049,7 +1046,7 @@ def plotcurv(Graph, e, movie=False):
                                                               #color='#7f7f7f'), 
                                               tickfont=dict(size=16,
                                                             color='black')),
-                                   yaxis=dict(nticks =7,
+                                   yaxis=dict(nticks=7,
                                               #title='x', 
                                               #titlefont=dict(
                                                               #family='Courier New, monospace',
@@ -1057,7 +1054,7 @@ def plotcurv(Graph, e, movie=False):
                                                               #color='#7f7f7f'), 
                                               tickfont=dict(size=16,
                                                             color='black')),
-                                   zaxis=dict(nticks =7,
+                                   zaxis=dict(nticks=7,
                                               #title='x', 
                                               #titlefont=dict(
                                                               #family='Courier New, monospace',
@@ -1093,9 +1090,7 @@ def plotcurv(Graph, e, movie=False):
     fig.update_layout(autosize=False, width=1200*0.8, height=800*0.8, 
                       margin=dict(l=50, r=50, b=100, t=100, pad=4))
     
-    fig.update_layout(
-    font_family="calibri",
-    )
+    fig.update_layout(font_family="calibri")
 
     fig.update_layout(scene=dict(xaxis=dict(ticklen=20, showticklabels=False, 
                                             zeroline=False, showbackground=False), 
@@ -1123,6 +1118,8 @@ plasma_cmap = matplotlib.cm.get_cmap('plasma')
 jet_cmap = matplotlib.cm.get_cmap('jet')
 inferno_cmap = matplotlib.cm.get_cmap('inferno')
 Spectral_cmap = matplotlib.cm.get_cmap('Spectral')
+Dark2_cmap = matplotlib.cm.get_cmap('Dark2')
+
 
 # This creates a palette with 255 points.
 magma = matplotlib_to_plotly(magma_cmap, 255)
