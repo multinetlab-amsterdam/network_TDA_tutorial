@@ -134,4 +134,8 @@ warnings.filterwarnings('ignore')
 -------------------------------------------------------------------------
 
 ### <a id='acknowledgements'></a>Acknowledgements:
-"Data were provided [in part] by the Human Connectome Project, MGH-USC Consortium (Principal Investigators: Bruce R. Rosen, Arthur W. Toga and Van Wedeen; U01MH093765) funded by the NIH Blueprint Initiative for Neuroscience Research grant; the National Institutes of Health grant P41EB015896; and the Instrumentation Grants S10RR023043, 1S10RR023401, 1S10RR019307."
+The 1000_Functional_Connectomes dataset was downloaded from the [The UCLA multimodal connectivity database](http://umcd.humanconnectomeproject.org/). 
+
+Brown JA, Rudie JD, Bandrowski A, Van Horn JD, Bookheimer SY. The UCLA multimodal connectivity database: a web-based platform for brain connectivity matrix sharing and analysis. Frontiers in neuroinformatics. 2012 Nov 28;6:28.  (http://dx.doi.org/10.3389/fninf.2012.00028) 
+
+Biswal BB, Mennes M, Zuo XN, Gohel S, Kelly C, Smith SM, Beckmann CF, Adelstein JS, Buckner RL, Colcombe S, Dogonowski AM. Toward discovery science of human brain function. Proceedings of the National Academy of Sciences. 2010 Mar 9;107(10):4734-9. [Freely available dataset](http://fcon_1000.projects.nitrc.org/)
