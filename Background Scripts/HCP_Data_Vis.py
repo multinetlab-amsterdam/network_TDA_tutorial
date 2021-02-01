@@ -30,6 +30,7 @@ import numpy as np # version 1.16.3
 import networkx as nx # version 2.4
 import community # version 0.13
 import meshio # version 4.0.16
+import community.community_louvain# version ?
 from plotly.offline import iplot, init_notebook_mode
 
 ########################
@@ -186,25 +187,88 @@ def Plot_brain_Shell(brain_trace):
         
     data = [brain_trace]
     fig = go.Figure(data=data)
-    fig.update_layout(
-        autosize=False,
-        width=800,
-        height=800,
-        margin=dict(l=50, r=50, b=100, t=100,
-       # pad=4
-                    )
-        )
-    fig.update_layout(scene=dict(xaxis=dict(ticklen=20, showticklabels=False, 
-                                            visible=False, zeroline=False, 
-                                            showbackground=False), 
-                                 yaxis=dict(ticklen=20, showticklabels=False,
-                                            visible=False, zeroline=False, 
-                                            showbackground=False),
-                                 zaxis=dict(ticklen=20, showticklabels=False, 
-                                            visible=False, zeroline=False,
-                                            showbackground=False)))
+    # view
+    camera = dict(up=dict(x=0, y=0, z=1), center=dict(x=0, y=0, z=0),
+                  eye=dict(x=1.7, y=0.8, z=0.225))
+    
+    
+    
+    
+    layout = go.Layout(autosize=True, # To export we need to make False and uncomment the details bellow
+                       #width=780, #height=540, # This is to make an centered html file. To export as png, one needs to include this margin
+                        #margin=go.Margin(l=5, r=5, b=5, t=0, pad=0),
+                        #title='Your tittle here!!!',
+                        #font=dict(size=18, color='black'), 
+                        paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)',
+                        #showline=False, #zaxis=dict(title='x Axis', 
+                                                     #titlefont=dict(
+                                                     #family='Courier New, monospace',
+                                                     #size=80, color='#7f7f7f')),
+                        scene=dict(camera=camera, 
+                                   xaxis=dict(nticks=5, 
+                                              #title='x', 
+                                              #titlefont=dict(
+                                                              #family='Courier New, monospace',
+                                                              #size=40,
+                                                              #color='#7f7f7f'), 
+                                              tickfont=dict(size=16,
+                                                            color='black')),
+                                   yaxis=dict(nticks=7,
+                                              #title='x', 
+                                              #titlefont=dict(
+                                                              #family='Courier New, monospace',
+                                                              #size=40,
+                                                              #color='#7f7f7f'), 
+                                              tickfont=dict(size=16,
+                                                            color='black')),
+                                   zaxis=dict(nticks=7,
+                                              #title='x', 
+                                              #titlefont=dict(
+                                                              #family='Courier New, monospace',
+                                                              #size=40,
+                                                              #color='#7f7f7f'), 
+                                              tickfont=dict(size=16,
+                                                            color='black')))
+                        #xaxis=dict(
+                        #    title='x Axis',
+                        #    titlefont=dict(
+                        #        family='Courier New, monospace',
+                        #        size=18,
+                        #        color='#7f7f7f'
+                        #    )
+                        #),
+                        #yaxis=dict(
+                        #    title='y Axis',
+                        #    titlefont=dict(
+                        #        family='Courier New, monospace',
+                        #        size=18,
+                        #        color='#7f7f7f'
+                        #    )
+                        #)
+                        )
+                        
+    
+    fig = go.Figure(data=data, layout=layout) #, layout=layout)
+    
+    fig.update_layout(autosize=False, width=800, height=800, 
+                      margin=dict(l=50, r=50, b=100, t=100, # pad=4
+                                  ))
+    # need to fix the bar!!
+    fig.update_layout(autosize=False, width=1200*0.8, height=800, 
+                      margin=dict(l=50, r=50, b=100, t=100, pad=4))
+    
+    #fig.update_layout(autosize=False, width=1200*0.8, height=800*0.8, 
+     #                 margin=dict(l=50, r=50, b=100, t=100, pad=4))
+    
+    fig.update_layout(font_family="calibri")
 
-    return iplot(fig,image_width=4340*1.1, image_height=2620*1.1)
+    fig.update_layout(scene=dict(xaxis=dict(ticklen=20, showticklabels=False, 
+                                            zeroline=False, showbackground=False), 
+                                 yaxis=dict(ticklen=20, showticklabels=False, 
+                                            zeroline=False, showbackground=False),
+                                 zaxis=dict(ticklen=20, showticklabels=False, 
+                                            zeroline=False, showbackground=False))) #,za
+    return iplot(fig)#,image_width=4340*1.1, image_height=2620*1.1)
 
 
 def listnet(property, Graph, weight=None, distance=None):
@@ -268,8 +332,8 @@ def Plot_Brain_Mod(G, path_pos=path_pos, scale=1):
     trace1, x, y, z = dictpos(areas, path_pos)
     sizec = 1.5 * scale #*#scale*np.array(Network_property)
     
-    part = community.best_partition(G, weight='weight')
-
+    #part = community.best_partition(G, weight='weight')# fixing problem!!!
+    part = community.community_louvain.best_partition(G,weight='weight')
     Mod_values = [part.get(node) for node in G.nodes()]
    
     colorV = Mod_values
@@ -280,7 +344,8 @@ def Plot_Brain_Mod(G, path_pos=path_pos, scale=1):
                         marker=dict(sizemode='diameter', symbol='circle',
                                     showscale=True,
                                     colorbar=dict(title='Values',
-                                                    thickness=30, x=0.95, len=0.8,
+                                                    thickness=30, x=0.1,#0.95,
+                                                    len=0.8,
                                                     tickmode='array',
                                                     tickvals=colorV),
                                     opacity=0.85, size=10*sizec, color=colorV, 
@@ -290,22 +355,88 @@ def Plot_Brain_Mod(G, path_pos=path_pos, scale=1):
     
     data = [brain_trace, trace1, trace2]
     fig = go.Figure(data=data)
-    fig.update_layout(
-        autosize=False,
-        width=1200,
-        height=800,
-        margin=dict(l=50, r=50, b=100, t=100, pad=4
-                    )
-        )
+    # view
+    camera = dict(up=dict(x=0, y=0, z=1), center=dict(x=0, y=0, z=0),
+                  eye=dict(x=1.7, y=0.8, z=0.225))
     
+    
+    
+    
+    layout = go.Layout(autosize=True, # To export we need to make False and uncomment the details bellow
+                       #width=780, #height=540, # This is to make an centered html file. To export as png, one needs to include this margin
+                        #margin=go.Margin(l=5, r=5, b=5, t=0, pad=0),
+                        title='Modularity',
+                        #font=dict(size=18, color='black'), 
+                        paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)',
+                        #showline=False, #zaxis=dict(title='x Axis', 
+                                                     #titlefont=dict(
+                                                     #family='Courier New, monospace',
+                                                     #size=80, color='#7f7f7f')),
+                        scene=dict(camera=camera, 
+                                   xaxis=dict(nticks=5, 
+                                              #title='x', 
+                                              #titlefont=dict(
+                                                              #family='Courier New, monospace',
+                                                              #size=40,
+                                                              #color='#7f7f7f'), 
+                                              tickfont=dict(size=16,
+                                                            color='black')),
+                                   yaxis=dict(nticks=7,
+                                              #title='x', 
+                                              #titlefont=dict(
+                                                              #family='Courier New, monospace',
+                                                              #size=40,
+                                                              #color='#7f7f7f'), 
+                                              tickfont=dict(size=16,
+                                                            color='black')),
+                                   zaxis=dict(nticks=7,
+                                              #title='x', 
+                                              #titlefont=dict(
+                                                              #family='Courier New, monospace',
+                                                              #size=40,
+                                                              #color='#7f7f7f'), 
+                                              tickfont=dict(size=16,
+                                                            color='black')))
+                        #xaxis=dict(
+                        #    title='x Axis',
+                        #    titlefont=dict(
+                        #        family='Courier New, monospace',
+                        #        size=18,
+                        #        color='#7f7f7f'
+                        #    )
+                        #),
+                        #yaxis=dict(
+                        #    title='y Axis',
+                        #    titlefont=dict(
+                        #        family='Courier New, monospace',
+                        #        size=18,
+                        #        color='#7f7f7f'
+                        #    )
+                        #)
+                        )
+                        
+    
+    fig = go.Figure(data=data, layout=layout) #, layout=layout)
+    
+    fig.update_layout(autosize=False, width=800, height=800, 
+                      margin=dict(l=50, r=50, b=100, t=100, # pad=4
+                                  ))
+    # need to fix the bar!!
+    fig.update_layout(autosize=False, width=1200*0.8, height=800, 
+                      margin=dict(l=50, r=50, b=100, t=100, pad=4))
+    
+    #fig.update_layout(autosize=False, width=1200*0.8, height=800*0.8, 
+     #                 margin=dict(l=50, r=50, b=100, t=100, pad=4))
+    
+    fig.update_layout(font_family="calibri")
+
     fig.update_layout(scene=dict(xaxis=dict(ticklen=20, showticklabels=False, 
                                             zeroline=False, showbackground=False), 
-                                 yaxis=dict(ticklen=20,showticklabels=False, 
+                                 yaxis=dict(ticklen=20, showticklabels=False, 
                                             zeroline=False, showbackground=False),
-                                 zaxis=dict(ticklen=20,showticklabels=False, 
-                                            zeroline=False, showbackground=False)))#,zaxis=dict(ticklen=20,showticklabels=False, zeroline=False))
-               
-    return iplot(fig,image_width=4340*1.1, image_height=2620*1.1)  
+                                 zaxis=dict(ticklen=20, showticklabels=False, 
+                                            zeroline=False, showbackground=False))) #,za
+    return iplot(fig)#,image_width=4340*1.1, image_height=2620*1.1)  
 
 
 def G_tre(matrix, e):
@@ -417,7 +548,7 @@ def Plot_Brain_Prop(node_prop, path_pos=path_pos, scale=1, node_colors=None):
                           marker=dict(sizemode='diameter',symbol='circle',
                                       showscale=True,
                                       colorbar=dict(title='Values',
-                                                    thickness=30, x=0.95,
+                                                    thickness=30, x=0.1,#0.95,
                                                     len=0.8, tickmode = 'array',
                                                     tick0=0, dtick=1, nticks=4),
                                       opacity=1, size=10*sizec, color=colorV, 
@@ -426,23 +557,88 @@ def Plot_Brain_Prop(node_prop, path_pos=path_pos, scale=1, node_colors=None):
                           showlegend=False, text=areas, hoverinfo=None)
     data=[brain_trace, trace1, trace2]
     fig = go.Figure(data=data)
-    fig.update_layout(
-        autosize=False,
-        width=800,
-        height=800,
-        margin=dict(l=50, r=50, b=100, t=100,
-       # pad=4
-                    )
-        ) 
+    # view
+    camera = dict(up=dict(x=0, y=0, z=1), center=dict(x=0, y=0, z=0),
+                  eye=dict(x=1.7, y=0.8, z=0.225))
     
+    
+    
+    
+    layout = go.Layout(autosize=True, # To export we need to make False and uncomment the details bellow
+                       #width=780, #height=540, # This is to make an centered html file. To export as png, one needs to include this margin
+                        #margin=go.Margin(l=5, r=5, b=5, t=0, pad=0),
+                        #title='Your tittle here',
+                        #font=dict(size=18, color='black'), 
+                        paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)',
+                        #showline=False, #zaxis=dict(title='x Axis', 
+                                                     #titlefont=dict(
+                                                     #family='Courier New, monospace',
+                                                     #size=80, color='#7f7f7f')),
+                        scene=dict(camera=camera, 
+                                   xaxis=dict(nticks=5, 
+                                              #title='x', 
+                                              #titlefont=dict(
+                                                              #family='Courier New, monospace',
+                                                              #size=40,
+                                                              #color='#7f7f7f'), 
+                                              tickfont=dict(size=16,
+                                                            color='black')),
+                                   yaxis=dict(nticks=7,
+                                              #title='x', 
+                                              #titlefont=dict(
+                                                              #family='Courier New, monospace',
+                                                              #size=40,
+                                                              #color='#7f7f7f'), 
+                                              tickfont=dict(size=16,
+                                                            color='black')),
+                                   zaxis=dict(nticks=7,
+                                              #title='x', 
+                                              #titlefont=dict(
+                                                              #family='Courier New, monospace',
+                                                              #size=40,
+                                                              #color='#7f7f7f'), 
+                                              tickfont=dict(size=16,
+                                                            color='black')))
+                        #xaxis=dict(
+                        #    title='x Axis',
+                        #    titlefont=dict(
+                        #        family='Courier New, monospace',
+                        #        size=18,
+                        #        color='#7f7f7f'
+                        #    )
+                        #),
+                        #yaxis=dict(
+                        #    title='y Axis',
+                        #    titlefont=dict(
+                        #        family='Courier New, monospace',
+                        #        size=18,
+                        #        color='#7f7f7f'
+                        #    )
+                        #)
+                        )
+                        
+    
+    fig = go.Figure(data=data, layout=layout) #, layout=layout)
+    
+    fig.update_layout(autosize=False, width=800, height=800, 
+                      margin=dict(l=50, r=50, b=100, t=100, # pad=4
+                                  ))
+    # need to fix the bar!!
+    fig.update_layout(autosize=False, width=1200*0.8, height=800, 
+                      margin=dict(l=50, r=50, b=100, t=100, pad=4))
+    
+    #fig.update_layout(autosize=False, width=1200*0.8, height=800*0.8, 
+     #                 margin=dict(l=50, r=50, b=100, t=100, pad=4))
+    
+    fig.update_layout(font_family="calibri")
+
     fig.update_layout(scene=dict(xaxis=dict(ticklen=20, showticklabels=False, 
                                             zeroline=False, showbackground=False), 
                                  yaxis=dict(ticklen=20, showticklabels=False, 
                                             zeroline=False, showbackground=False),
                                  zaxis=dict(ticklen=20, showticklabels=False, 
-                                            zeroline=False, showbackground=False)))
-               
-    return iplot(fig,image_width=4340*1.1, image_height=2620*1.1)    
+                                            zeroline=False, showbackground=False))) #,za
+    return iplot(fig)#,image_width=4340*1.1, image_height=2620*1.1)    
 
 
 def degree_3D(Graph, scale=1, node_colors=None, color_prop_name=None, weight=False, verbose=False):
@@ -502,7 +698,7 @@ def degree_3D(Graph, scale=1, node_colors=None, color_prop_name=None, weight=Fal
         
     trace2 = go.Scatter3d(x=x, y=y, z=z, text=areas, mode='markers', #name='areas',
                marker=dict(sizemode='diameter', symbol='circle', showscale=True, 
-                           colorbar=dict(title=name, thickness=30, x=0.95,
+                           colorbar=dict(title=name, thickness=30, x=0.1,#0.95,
                                          len=0.8, tickmode='linear', 
                                          tick0=0, dtick=1), opacity=0.85, 
                            size=10*sizec, color=colorV, colorscale=plasma,
@@ -515,23 +711,88 @@ def degree_3D(Graph, scale=1, node_colors=None, color_prop_name=None, weight=Fal
 
     data = [brain_trace,trace2,trace3,trace1]
     fig = go.Figure(data=data)
-    fig.update_layout(
-        autosize=False,
-        width=800,
-        height=800,
-        margin=dict(l=50, r=50, b=100, t=100, # pad=4
-                   )
-       )
+    # view
+    camera = dict(up=dict(x=0, y=0, z=1), center=dict(x=0, y=0, z=0),
+                  eye=dict(x=1.7, y=0.8, z=0.225))
     
+    
+    
+    
+    layout = go.Layout(autosize=True, # To export we need to make False and uncomment the details bellow
+                       #width=780, #height=540, # This is to make an centered html file. To export as png, one needs to include this margin
+                        #margin=go.Margin(l=5, r=5, b=5, t=0, pad=0),
+                        #title='Your tittle here',
+                        #font=dict(size=18, color='black'), 
+                        paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)',
+                        #showline=False, #zaxis=dict(title='x Axis', 
+                                                     #titlefont=dict(
+                                                     #family='Courier New, monospace',
+                                                     #size=80, color='#7f7f7f')),
+                        scene=dict(camera=camera, 
+                                   xaxis=dict(nticks=5, 
+                                              #title='x', 
+                                              #titlefont=dict(
+                                                              #family='Courier New, monospace',
+                                                              #size=40,
+                                                              #color='#7f7f7f'), 
+                                              tickfont=dict(size=16,
+                                                            color='black')),
+                                   yaxis=dict(nticks=7,
+                                              #title='x', 
+                                              #titlefont=dict(
+                                                              #family='Courier New, monospace',
+                                                              #size=40,
+                                                              #color='#7f7f7f'), 
+                                              tickfont=dict(size=16,
+                                                            color='black')),
+                                   zaxis=dict(nticks=7,
+                                              #title='x', 
+                                              #titlefont=dict(
+                                                              #family='Courier New, monospace',
+                                                              #size=40,
+                                                              #color='#7f7f7f'), 
+                                              tickfont=dict(size=16,
+                                                            color='black')))
+                        #xaxis=dict(
+                        #    title='x Axis',
+                        #    titlefont=dict(
+                        #        family='Courier New, monospace',
+                        #        size=18,
+                        #        color='#7f7f7f'
+                        #    )
+                        #),
+                        #yaxis=dict(
+                        #    title='y Axis',
+                        #    titlefont=dict(
+                        #        family='Courier New, monospace',
+                        #        size=18,
+                        #        color='#7f7f7f'
+                        #    )
+                        #)
+                        )
+                        
+    
+    fig = go.Figure(data=data, layout=layout) #, layout=layout)
+    
+    fig.update_layout(autosize=False, width=800, height=800, 
+                      margin=dict(l=50, r=50, b=100, t=100, # pad=4
+                                  ))
+    # need to fix the bar!!
+    fig.update_layout(autosize=False, width=1200*0.8, height=800, 
+                      margin=dict(l=50, r=50, b=100, t=100, pad=4))
+    
+    #fig.update_layout(autosize=False, width=1200*0.8, height=800*0.8, 
+     #                 margin=dict(l=50, r=50, b=100, t=100, pad=4))
+    
+    fig.update_layout(font_family="calibri")
+
     fig.update_layout(scene=dict(xaxis=dict(ticklen=20, showticklabels=False, 
                                             zeroline=False, showbackground=False), 
                                  yaxis=dict(ticklen=20, showticklabels=False, 
                                             zeroline=False, showbackground=False),
                                  zaxis=dict(ticklen=20, showticklabels=False, 
-                                            zeroline=False, showbackground=False)))#,zaxis=dict(ticklen=20,showticklabels=False, zeroline=False))
-
-               
-    return iplot(fig, image_width=4340*1.1, image_height=2620*1.1) 
+                                            zeroline=False, showbackground=False))) #,za
+    return iplot(fig)#, image_width=4340*1.1, image_height=2620*1.1) 
     #return iplot(data)
 
 
@@ -771,12 +1032,14 @@ def plotclique3dk(Graph, e, k, t, movie=False):
         Zed += [pos3d[edge[0]][2],pos3d[edge[1]][2], None] 
 
     
+    
+    
     camera = dict(up = dict(x=0, y=0, z=1), center=dict(x=0, y=0, z=0),
-                  eye=dict(x=1.9, y=0.8, z=0.225) #z=0.125,y=0.95,x=1.7
+                  eye=dict(x=1.7, y=0.8, z=0.225) #z=0.125,y=0.95,x=1.7
                   )
     
     layout = go.Layout(title='Node participation in '+ str(k) 
-                       + '-Cliques  - Threshold = ' + str('%.3f' % e),
+                       + '-Cliques  - Density = ' + str('%.3f' % e),
                        paper_bgcolor='rgba(0,0,0,0)',
                        plot_bgcolor='rgba(0,0,0,0)', 
                        scene=dict(camera=camera,
@@ -810,7 +1073,7 @@ def plotclique3dk(Graph, e, k, t, movie=False):
     data = coor
     #print(coor)
     fig = go.Figure(data=data, layout=layout)
-    fig.update_layout(autosize=False, width=1200*0.8, height=800*0.8, 
+    fig.update_layout(autosize=False, width=1200*0.8, height=800, #before 1200*0.8, height=800*0.8, 
                       margin=dict(l=50, r=50, b=100, t=100, pad=4))
 
     fig.update_layout(scene=dict(xaxis=dict(ticklen=20, showticklabels=False, 
@@ -1021,8 +1284,10 @@ def plotcurv(Graph, e, movie=False):
                           showlegend=False)
     
     data = [brain_trace, trace1, tracecurv, tracep, tracen, tracel]
+    
+    # view
     camera = dict(up=dict(x=0, y=0, z=1), center=dict(x=0, y=0, z=0),
-                  eye=dict(x=1.9, y=0.8, z=0.225))
+                  eye=dict(x=1.7, y=0.8, z=0.225))
     
     
     
@@ -1030,7 +1295,7 @@ def plotcurv(Graph, e, movie=False):
     layout = go.Layout(autosize=True, # To export we need to make False and uncomment the details bellow
                        #width=780, #height=540, # This is to make an centered html file. To export as png, one needs to include this margin
                         #margin=go.Margin(l=5, r=5, b=5, t=0, pad=0),
-                        title='Node Curvature - Threshold = ' + str('%.3f' % e),
+                        title='Node Curvature - Density = ' + str('%.3f' % e),
                         #font=dict(size=18, color='black'), 
                         paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)',
                         #showline=False, #zaxis=dict(title='x Axis', 
@@ -1087,8 +1352,11 @@ def plotcurv(Graph, e, movie=False):
                       margin=dict(l=50, r=50, b=100, t=100, # pad=4
                                   ))
     # need to fix the bar!!
-    fig.update_layout(autosize=False, width=1200*0.8, height=800*0.8, 
+    fig.update_layout(autosize=False, width=1200*0.8, height=800, 
                       margin=dict(l=50, r=50, b=100, t=100, pad=4))
+    
+    #fig.update_layout(autosize=False, width=1200*0.8, height=800*0.8, 
+     #                 margin=dict(l=50, r=50, b=100, t=100, pad=4))
     
     fig.update_layout(font_family="calibri")
 
