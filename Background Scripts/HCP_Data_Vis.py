@@ -700,7 +700,7 @@ def degree_3D(Graph, scale=1, node_colors=None, color_prop_name=None, weight=Fal
                marker=dict(sizemode='diameter', symbol='circle', showscale=True, 
                            colorbar=dict(title=name, thickness=30, x=0.1,#0.95,
                                          len=0.8, tickmode='linear', 
-                                         tick0=0, dtick=1), opacity=0.85, 
+                                         tick0=0, dtick=1, showticklabels=False), opacity=0.85, 
                            size=10*sizec, color=colorV, colorscale=plasma,
                            cauto=value, cmin=0, cmax=5), hoverinfo='skip', 
                showlegend=False)  
