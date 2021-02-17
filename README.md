@@ -1,7 +1,7 @@
 # Notebook for Network and Topological Analysis in Neuroscience
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![GLP-3.0 License](https://img.shields.io/github/license/multinetlab-amsterdam/network_TDA_tutorial)](https://img.shields.io/github/license/multinetlab-amsterdam/network_TDA_tutorial)
-[![Python 3.7.8](https://img.shields.io/badge/python-3.7.8-blue.svg)](https://www.python.org/downloads/release/python-378/)
+[![Python 3.7+](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/)
 
 
 [![Stars](https://img.shields.io/github/stars/multinetlab-amsterdam/network_TDA_tutorial?style=social)](https://img.shields.io/github/stars/multinetlab-amsterdam/network_TDA_tutorial?style=social)
@@ -32,7 +32,7 @@ Contact information: <e.centeno@amsterdamumc.nl> or <f.nobregasantos@amsterdamum
 
 > This repository is a supplement to  ["paper title"](https://doi...)
 >
-> and its preprint ["title"](https://doi...)
+> and its preprint ["A hands-on tutorial on network and topological neuroscience"](https://doi.org/10.1101/2021.02.15.431255)
 
 <br>
 
@@ -45,7 +45,7 @@ Contact information: <e.centeno@amsterdamumc.nl> or <f.nobregasantos@amsterdamum
 ```
                                     A video created with our 3D brain plots!
 ```
-![](./Figures/gif.gif)
+![](./Figures/filtration.gif)
 
 
 ------------------------------------------------------------------------
@@ -70,7 +70,7 @@ Here we will describe the core packages that will be necessary, but due to depen
 -------------------------------------------------------------------------
 
 ### <a id='how_to_install'></a>How to install:
-We recommend creating a new environment in Anaconda dedicated for the use of these notebooks.
+We recommend creating a new environment in Anaconda dedicated for the use of these notebooks (Primarly tested on Windows/Linux).
 
 1. Create a new Anaconda environment with the correct python version (in Anaconda prompt or navigator)
 
