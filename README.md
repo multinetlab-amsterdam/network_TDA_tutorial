@@ -30,9 +30,7 @@ Contact information: <e.centeno@amsterdamumc.nl> or <f.nobregasantos@amsterdamum
  
 <br>
 
-> This repository is a supplement to  ["paper title"](https://doi...)
->
-> and its preprint ["A hands-on tutorial on network and topological neuroscience"](https://doi.org/10.1101/2021.02.15.431255)
+> This repository is a supplement to the preprint ["A hands-on tutorial on network and topological neuroscience"](https://doi.org/10.1101/2021.02.15.431255)
 
 <br>
 
