@@ -84,7 +84,7 @@ conda activate envname
 cd path\to\notebookfolder
 ```
 
-4. Install packages using pip in Anaconda prompt (for MAC OS, use pip install -r requirements.txt) 
+4. Install packages using pip in Anaconda prompt
 
 ** with environment-specific python.exe (Windows)
 ```
