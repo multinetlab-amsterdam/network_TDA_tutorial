@@ -84,10 +84,15 @@ conda activate envname
 cd path\to\notebookfolder
 ```
 
-4. Install packages using pip in Anaconda prompt with environment-specific python.exe (for MAC OS, use pip install -r requirements.txt) 
+4. Install packages using pip in Anaconda prompt (for MAC OS, use pip install -r requirements.txt) 
 
+** with environment-specific python.exe (Windows)
 ```
 path\to\anaconda3\envs\envname\python.exe -m pip install -r requirements.txt
+```
+** MacOS users do not need to give the path to the environment's python.exe
+```
+pip install -r requirements.txt
 ```
 
 5. Add jupyter-plotly labextension (key for 3D visualization)
