@@ -75,7 +75,7 @@ We recommend creating a new environment in Anaconda dedicated for the use of the
 2. Activate the new environment in the command line (Anaconda prompt)
 
 ```
-activate envname
+conda activate envname
 ```
 
 3. Change to the notebook's directory
@@ -84,7 +84,7 @@ activate envname
 cd path\to\notebookfolder
 ```
 
-4. Install packages using pip in Anaconda prompt with environment-specific python.exe
+4. Install packages using pip in Anaconda prompt with environment-specific python.exe (for MAC OS, use pip install -r requirements.txt) 
 
 ```
 path\to\anaconda3\envs\envname\python.exe -m pip install -r requirements.txt
