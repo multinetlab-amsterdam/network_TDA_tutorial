@@ -51,7 +51,7 @@ Contact information: <e.centeno@amsterdamumc.nl> or <f.nobregasantos@amsterdamum
 ### <a id='requirements'></a> Requirements:
 Here we will describe the core packages that will be necessary, but due to dependency compatibilities, we have provided a requirements.txt with all packages needed to be installed in a new Anaconda environment. 
 
-    - Python: 3.7.8
+    - Python: 3.x
     - Numpy: 1.18.5
     - Matplotlib: 3.3.2
     - Meshio: 4.0.16 --- https://pypi.org/project/meshio/
@@ -60,9 +60,10 @@ Here we will describe the core packages that will be necessary, but due to depen
     - Networkx: 2.4
     - Nxviz: 0.6.2  --- For CircosPlot to work fully, we recommend installing through https://github.com/eduardacenteno/nxviz/
     - Community (python-louvain): 0.13 --- https://python-louvain.readthedocs.io/en/latest/api.html
-    - Gudhi: 3.3.0 --- http://gudhi.gforge.inria.fr/
+    - Gudhi: 3.4.1 --- http://gudhi.gforge.inria.fr/
     - Plotly: 4.6.0
-    - Scikit-learn: 0.23.1
+    - Scikit-learn: 0.24.1
+    - Scipy: 1.5.0
     - JupyterLab: 1.2.0 --- This is very important; otherwise, plotly will not work as we intended. (https://plotly.com/python/getting-started/)
 
 -------------------------------------------------------------------------

@@ -23,14 +23,14 @@ __status__ = "Production"
 ####################
 
 # Third party imports
-import pandas as pd # version 1.0.5
+import pandas as pd # version 1.1.3
 import plotly.graph_objs as go # version 4.6.0 
-import matplotlib # version 3.0.0
-import numpy as np # version 1.16.3
+import matplotlib # version 3.3.2
+import numpy as np # version 1.18.5
 import networkx as nx # version 2.4
 import community # version 0.13
 import meshio # version 4.0.16
-import community.community_louvain# version ?
+import community.community_louvain
 from plotly.offline import iplot, init_notebook_mode
 
 ########################
