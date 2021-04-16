@@ -143,3 +143,5 @@ The 1000_Functional_Connectomes dataset was downloaded from the [The UCLA multim
 Brown JA, Rudie JD, Bandrowski A, Van Horn JD, Bookheimer SY. The UCLA multimodal connectivity database: a web-based platform for brain connectivity matrix sharing and analysis. Frontiers in neuroinformatics. 2012 Nov 28;6:28.  (http://dx.doi.org/10.3389/fninf.2012.00028) 
 
 Biswal BB, Mennes M, Zuo XN, Gohel S, Kelly C, Smith SM, Beckmann CF, Adelstein JS, Buckner RL, Colcombe S, Dogonowski AM. Toward discovery science of human brain function. Proceedings of the National Academy of Sciences. 2010 Mar 9;107(10):4734-9. [Freely available dataset](http://fcon_1000.projects.nitrc.org/)
+
+Rule A, Birmingham A, Zuniga C, Altintas I, Huang SC, Knight R, Moshiri N, Nguyen MH, Rosenthal SB, Pérez F, Rose PW. Ten simple rules for writing and sharing computational analyses in Jupyter Notebooks. https://github.com/jupyter-guide/ten-rules-jupyter
