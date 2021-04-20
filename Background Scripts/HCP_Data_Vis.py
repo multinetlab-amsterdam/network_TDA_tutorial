@@ -310,12 +310,12 @@ def listnet(property, Graph, weight=None, distance=None):
 
     return list(m.values())
 
-def Plot_Brain_Mod(G, path_pos=path_pos, scale=1):
+def Plot_Brain_Mod(Graph, path_pos=path_pos, scale=1):
     """ Brain 3D plot with nodes according to modularity
     
     Parameters
     ----------
-    G: NetworkX graph
+    Graph: NetworkX graph
             
     path_pos: string
         Path to the file with atlas coordinates
@@ -332,9 +332,9 @@ def Plot_Brain_Mod(G, path_pos=path_pos, scale=1):
     trace1, x, y, z = dictpos(areas, path_pos)
     sizec = 1.5 * scale #*#scale*np.array(Network_property)
     
-    #part = community.best_partition(G, weight='weight')# fixing problem!!!
-    part = community.community_louvain.best_partition(G,weight='weight')
-    Mod_values = [part.get(node) for node in G.nodes()]
+    #part = community.best_partition(Graph, weight='weight')# fixing problem!!!
+    part = community.community_louvain.best_partition(Graph,weight='weight')
+    Mod_values = [part.get(node) for node in Graph.nodes()]
    
     colorV = Mod_values
     trace2 = go.Scatter3d(x=np.array(x),
@@ -666,14 +666,13 @@ def degree_3D(Graph, scale=1, node_colors=None, color_prop_name=None, weight=Fal
         
     """
 	
-    G = Graph
     value = True
     if weight==False:        
-        sizec = [scale *i[1] for i in G.degree()]
+        sizec = [scale *i[1] for i in Graph.degree()]
         sizec = np.array(sizec) + 1
         
     else:
-        sizec = [scale *i[1] for i in G.degree(weight='weight')]
+        sizec = [scale *i[1] for i in Graph.degree(weight='weight')]
         sizec = np.array(sizec) + 1
         
     if node_colors != None:
@@ -691,7 +690,7 @@ def degree_3D(Graph, scale=1, node_colors=None, color_prop_name=None, weight=Fal
     Xed = []
     Yed = []
     Zed = []
-    for edge in G.edges():
+    for edge in Graph.edges():
         Xed += [pos3d[edge[0]][0],pos3d[edge[1]][0], None]
         Yed += [pos3d[edge[0]][1],pos3d[edge[1]][1], None] 
         Zed += [pos3d[edge[0]][2],pos3d[edge[1]][2], None] 
@@ -709,15 +708,12 @@ def degree_3D(Graph, scale=1, node_colors=None, color_prop_name=None, weight=Fal
                           line=dict(color='black', width=2), 
                           hoverinfo='none', showlegend=False, opacity=0.3)
 
-    data = [brain_trace,trace2,trace3,trace1]
+    data = [brain_trace,trace2, trace3, trace1]
     fig = go.Figure(data=data)
     # view
     camera = dict(up=dict(x=0, y=0, z=1), center=dict(x=0, y=0, z=0),
                   eye=dict(x=1.7, y=0.8, z=0.225))
-    
-    
-    
-    
+                  
     layout = go.Layout(autosize=True, # To export we need to make False and uncomment the details bellow
                        #width=780, #height=540, # This is to make an centered html file. To export as png, one needs to include this margin
                         #margin=go.Margin(l=5, r=5, b=5, t=0, pad=0),
@@ -821,8 +817,7 @@ def Allnodeslistak(Graph, cl, verbose=False):
 
     # I want that the output is a vector analogous with the previous one, but for a given k, not for all k
     
-    G = Graph #Graph_thresh(e,i)  # This is the initial Graph
-    temp = list(nx.enumerate_all_cliques(G))
+    temp = list(nx.enumerate_all_cliques(Graph))
     
     DIAGNOSTIC('These are all cliques')
     DIAGNOSTIC(temp)
@@ -832,7 +827,7 @@ def Allnodeslistak(Graph, cl, verbose=False):
     
     # We assume that the size of the cliques are smaller than 20, 
     # so we create an empty list of size 20 for the list_1
-    for i in G.nodes():
+    for i in Graph.nodes():
         list_1.append([0] * 20) # creating a list of lists - all empty for the Scores of everybody
     
     #DIAGNOSTIC(lista)#print(list)# here I can change - Creating a list
@@ -840,7 +835,7 @@ def Allnodeslistak(Graph, cl, verbose=False):
     #score=0
         
     "Now we run over all nodes checking if the node is in one clique or another"
-    for node in G.nodes(): # now I have to do the process for is in clique
+    for node in Graph.nodes(): # now I have to do the process for is in clique
         score = 0 # This is the score of the node
         for clique in temp:
             k = len(clique)
@@ -865,7 +860,7 @@ def Allnodeslistak(Graph, cl, verbose=False):
     
     DIAGNOSTIC('Now lets plot the number of k-cliques each number is participating in')
     
-    for i in G.nodes():
+    for i in Graph.nodes():
         klist.append(list_1[i][cl-1])
         
         DIAGNOSTIC('the node ' + str(i) + ' has ' + str(cl) + ' - score =' 
@@ -992,9 +987,8 @@ def plotclique3dk(Graph, e, k, t, movie=False):
    
     """
 
-    G = Graph
     trace2 = tracenodek(Graph,k) #tracenodek(e,i,k)
-    temp = list(nx.enumerate_all_cliques(G))
+    temp = list(nx.enumerate_all_cliques(Graph))
 
     coor = []
     for i in range(0, len(temp)): #Running over all cliques
@@ -1026,7 +1020,7 @@ def plotclique3dk(Graph, e, k, t, movie=False):
     Xed=[]
     Yed=[]
     Zed=[]
-    for edge in G.edges():
+    for edge in Graph.edges():
         Xed += [pos3d[edge[0]][0],pos3d[edge[1]][0], None]
         Yed += [pos3d[edge[0]][1],pos3d[edge[1]][1], None] 
         Zed += [pos3d[edge[0]][2],pos3d[edge[1]][2], None] 
@@ -1111,13 +1105,12 @@ def Curv_calc(Graph, verbose=False):
         
     DIAGNOSTIC('This function run over all nodes and computes the curvature of the nodes in the graph' )
    
-    G = Graph #Graph_thresh(e,i)  # This is the initial Graph
-    temp=list(nx.enumerate_all_cliques(G))
+    temp=list(nx.enumerate_all_cliques(Graph))
     "This lista is a vector V where each v_i is the number of cliques of size i"
     list_1 = []
     
     "We suppose that the size of the cliques are smaller than 20, so we create an empty list of size 20 for the lista"
-    for i in G.nodes():
+    for i in Graph.nodes():
         list_1.append([0] * 20) # creating a list of lists - all empty for the Scores of everybody
     
     DIAGNOSTIC('These are all cliques of the Network:')
@@ -1129,7 +1122,7 @@ def Curv_calc(Graph, verbose=False):
     "Now we run over all nodes checking if the node is in one clique or another"
     DIAGNOSTIC('We now print the curvature score of each node in the network')
     
-    for node in G.nodes(): # now I have to do the process for is in clique
+    for node in Graph.nodes(): # now I have to do the process for is in clique
         score=0 # This is the score of the node
         for clique in temp:
             k=len(clique)
