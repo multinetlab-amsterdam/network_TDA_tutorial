@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: Gervini Zampieri Centeno
+    given-names: Eduarda
+    orcid: https://orcid.org/0000-0002-1490-4903
+  - family-names: Nóbrega Santos
+    given-names: Fernando Antônio
+title: "Notebook for Network and Topological Analysis in Neuroscience"
+version: 1.0
+doi: 10.5281/zenodo.4483651
+date-released: 2021-01-31
