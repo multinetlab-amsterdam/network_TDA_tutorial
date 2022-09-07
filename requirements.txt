@@ -54,7 +54,7 @@ nodejs==0.1.1
 notebook
 npm==0.1.1
 numpy==1.18.5
--e git+git://github.com/eduardacenteno/nxviz#egg=nxviz
+-e git+https://git@github.com/eduardacenteno/nxviz#egg=nxviz
 olefile==0.46
 optional-django==0.1.0
 packaging==20.4
