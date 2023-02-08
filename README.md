@@ -117,7 +117,7 @@ __Troubleshooting__:
     
 <br>
 
-#### Web-based options (**** we are currently facing issues with Binder! Hopefully it will be fixed soon!:
+#### Web-based options (*we are currently facing issues with Binder! Hopefully it will be fixed soon!*):
 | Nbviewer | Jupyter Notebook | Jupyter Lab | HTML |
 | ---      | --               | ---         | ---  |
 | [1-network_analysis.ipynb](https://nbviewer.jupyter.org/github/multinetlab-amsterdam/network_TDA_tutorial/blob/main/1-network_analysis.ipynb) | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/multinetlab-amsterdam/network_TDA_tutorial/HEAD?filepath=1-network_analysis.ipynb) | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/multinetlab-amsterdam/network_TDA_tutorial/HEAD?urlpath=lab/tree/1-network_analysis.ipynb) | [HTML](https://htmlpreview.github.io/?https://github.com/multinetlab-amsterdam/network_TDA_tutorial/blob/main/html/1-network_analysis.html) |
