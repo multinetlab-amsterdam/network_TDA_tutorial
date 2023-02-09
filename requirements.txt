@@ -17,3 +17,4 @@ npm
 nodejs
 nbformat
 latexcodec
+jupyterlab
