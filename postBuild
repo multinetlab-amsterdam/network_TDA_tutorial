@@ -1,2 +1,0 @@
-jupyter lab build --dev-build=False --minimize=False
-jupyter labextension install jupyterlab-plotly
