@@ -32,7 +32,7 @@ Contact information: <e.centeno@amsterdamumc.nl> or <f.nobregasantos@amsterdamum
 
 > This repository is a supplement to the preprint [A hands-on tutorial on network and topological neuroscience](https://doi.org/10.1101/2021.02.15.431255) and the [final version published at Brain Structure and Function](https://doi.org/10.1007/s00429-021-02435-0). 
 
-In 2023, this work received two awards: an award under the Open educational resources category at the [OSCAwards ceremony](https://spui25.nl/programma/science-for-all-the-2023-oscawards) and it was ranked first for the [Best Paper Award](https://multinetlab.com/2023/07/23/eduarda-receives-best-paper-award-at-ohbm2023/) given by Brain Structure and Function.
+In 2023, this work received two awards: an award under the Open Educational Resources category at the [OSCAwards ceremony](https://spui25.nl/programma/science-for-all-the-2023-oscawards), and it was ranked first for the [Best Paper Award](https://multinetlab.com/2023/07/23/eduarda-receives-best-paper-award-at-ohbm2023/) given by Brain Structure and Function.
 
 <br>
 
